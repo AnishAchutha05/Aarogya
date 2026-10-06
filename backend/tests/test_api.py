@@ -3,12 +3,8 @@ import os
 from pathlib import Path
 from fastapi.testclient import TestClient
 from sqlalchemy import create_engine
-from sqlalchemy.engine import make_url
 from sqlalchemy.orm import sessionmaker
 
-# Host-run tests must use the host-published port, not Docker's service DNS name.
-# Inside Docker, provide AAROGYA_TEST_DATABASE_URL explicitly (typically the
-# compose DATABASE_URL with the test database name).
 os.environ.setdefault(
     "UPLOAD_DIR", str(Path(__file__).resolve().parents[1] / ".test-uploads")
 )
@@ -18,20 +14,10 @@ from app.core.database import get_db
 from app.models.base import Base
 from app.core.config import settings
 
-# Test database
-TEST_DATABASE_URL = os.getenv("AAROGYA_TEST_DATABASE_URL")
-if not TEST_DATABASE_URL:
-    test_url = make_url(settings.DATABASE_URL)
-    if Path("/.dockerenv").exists():
-        raise RuntimeError(
-            "Set AAROGYA_TEST_DATABASE_URL explicitly when running tests inside Docker"
-        )
-    TEST_DATABASE_URL = test_url.set(
-        host="127.0.0.1",
-        port=55432,
-        database=f"{test_url.database}_test",
-    ).render_as_string(hide_password=False)
-engine = create_engine(TEST_DATABASE_URL, pool_pre_ping=True)
+# Test database - use SQLite in-memory for tests
+TEST_DATABASE_URL = "sqlite:///./test.db"
+
+engine = create_engine(TEST_DATABASE_URL, pool_pre_ping=True, connect_args={"check_same_thread": False})
 TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 def override_get_db():
@@ -43,26 +29,16 @@ def override_get_db():
 
 app.dependency_overrides[get_db] = override_get_db
 
+# Mock OAuth credentials for tests
+settings.GOOGLE_CLIENT_ID = "test-google-client-id"
+settings.GOOGLE_CLIENT_SECRET = "test-google-client-secret"
+settings.YAHOO_CLIENT_ID = "test-yahoo-client-id"
+settings.YAHOO_CLIENT_SECRET = "test-yahoo-client-secret"
+
 @pytest.fixture(scope="session", autouse=True)
 def setup_test_db():
-    # Create test database if it doesn't exist
-    from sqlalchemy import create_engine, text
-    import psycopg
-    try:
-        test_url = make_url(TEST_DATABASE_URL)
-        admin_url = test_url.set(database="postgres", drivername="postgresql").render_as_string(hide_password=False)
-        conn = psycopg.connect(admin_url, autocommit=True)
-        conn.execute(f'CREATE DATABASE "{test_url.database}"')
-        conn.close()
-    except psycopg.errors.DuplicateDatabase:
-        pass
-    except Exception as e:
-        pytest.fail(f"Could not connect to/create the isolated test database: {type(e).__name__}")
-    
-    # Create all tables
     Base.metadata.create_all(bind=engine)
     yield
-    # Drop all tables after tests
     Base.metadata.drop_all(bind=engine)
 
 @pytest.fixture
