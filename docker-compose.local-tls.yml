@@ -1,0 +1,21 @@
+services:
+  backend:
+    ports: !override
+      - "127.0.0.1:8001:8000"
+    expose:
+      - "8443"
+    volumes:
+      - ./certs:/certs:ro
+      - ./backend/uploads:/app/uploads
+    command: ["/bin/bash", "/app/run_dual_protocol.sh"]
+
+  local_tls_mux:
+    image: haproxy:3.2-alpine
+    container_name: aarogya_local_tls_mux
+    ports:
+      - "127.0.0.1:8000:8000"
+    volumes:
+      - ./haproxy-local-tls.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+    depends_on:
+      - backend
+    restart: unless-stopped
