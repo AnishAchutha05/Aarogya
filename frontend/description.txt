@@ -1,0 +1,663 @@
+AAROGYA — PRODUCT DESCRIPTION
+
+PRODUCT NAME
+Aarogya
+
+PRODUCT TAGLINE
+Your personal wellness companion.
+
+PRODUCT SUMMARY
+Aarogya is a personalized, AI-powered consumer wellness platform designed around the individual user rather than a generic health dashboard. Its purpose is to help users make practical wellness decisions that fit their actual lives by combining persistent personal context, an adaptive wellness experience, an AI mentor named Aaryu, personalized plans and recommendations, conversational guidance, progress tracking, and a visual history of personal progress.
+
+Aarogya is not intended to be a medical diagnosis platform, hospital system, clinical tool, or replacement for a healthcare professional. It is a consumer wellness companion focused on everyday lifestyle improvement, healthy routines, activity, nutrition and wellness education, motivation, planning, reflection, and personal progress.
+
+The defining idea behind Aarogya is personalization. The application should not behave as a generic collection of health widgets. It should understand the user, use their preferences and history, respond to what they tell it, and adapt its recommendations according to their circumstances and behavior.
+
+The product should feel like a polished consumer application that a person would genuinely want to return to. It should feel thoughtful, calm, modern, responsive, and highly intentional. Its intelligence should be visible through useful personalization and adaptation rather than through unnecessary technical complexity or flashy AI effects.
+
+CORE PRODUCT PHILOSOPHY
+Aarogya follows a continuous wellness loop:
+
+Understand the user
+→ Understand the user's current situation
+→ Recommend realistic actions
+→ User takes action
+→ Aarogya records the outcome
+→ Aarogya learns from the new context
+→ Recommendations become more relevant
+→ User returns and continues the cycle
+
+The application should therefore feel less like a static health tracker and more like a personal system that gradually becomes more useful as the user interacts with it.
+
+Aarogya should not overwhelm the user with data. It should transform information into useful actions, explanations, and decisions.
+
+TARGET USER EXPERIENCE
+Aarogya is intended for ordinary consumers who want to improve aspects of their wellness but may struggle with consistency, motivation, planning, or knowing what is realistic for them.
+
+The experience should be understandable without requiring a product demonstration. A new user should quickly understand what Aarogya is, who Aaryu is, what Aarogya can do for them, what they should do next, why the current recommendation was chosen, and how their activity contributes to their longer-term progress.
+
+The product should prioritize a small number of strong experiences over an overcrowded feature set.
+
+PRIMARY PRODUCT AREAS
+The core Aarogya application revolves around four major destinations:
+
+1. TODAY
+2. AARYU
+3. ROADMAP
+4. PROGRESS
+
+Secondary product areas include:
+- Account
+- Settings
+- AI Provider configuration
+- Authentication and onboarding
+
+These destinations should remain visually and structurally coherent across desktop and mobile.
+
+1. TODAY — THE PERSONALIZED HOME EXPERIENCE
+The Today experience is the main entry point after authentication. It represents what Aarogya believes is most useful for the user right now.
+
+The Today page may contain:
+- personalized greeting,
+- current wellness state,
+- quick daily check-in,
+- current wellness goals,
+- recommended activities,
+- personalized daily plan,
+- activity completion,
+- progress toward current goals,
+- concise insights,
+- an explanation of why a particular recommendation was selected.
+
+The page should emphasize action rather than passive data consumption.
+
+A useful interaction pattern is:
+
+“How are you feeling today?”
+→ Energy / mood / available time / relevant context
+→ Personalized daily plan
+→ User completes one or more activities
+→ Progress and context update
+
+The product should make it clear that the plan can change according to the user's current circumstances.
+
+For example, if a user has limited time or reports low energy, the application may recommend shorter or lower-intensity activities rather than blindly presenting the same routine.
+
+The system should explain meaningful adaptations in simple human language, such as: “You have less time today, so your plan has been shortened.”
+
+The interface should never feel like it is punishing the user for not completing everything. It should support realistic behavior and continuity.
+
+2. AARYU — THE PERSONAL AI WELLNESS MENTOR
+Aaryu is Aarogya's conversational AI wellness mentor.
+
+Aaryu is not simply a generic chatbot. It should have access to authorized user context so that conversations can be personalized.
+
+Relevant context may include:
+- profile information,
+- age or date of birth where appropriate,
+- gender where voluntarily provided,
+- height and weight where relevant,
+- region/nationality for cultural and dietary context,
+- foods the user regularly eats,
+- dietary preferences,
+- wellness goals,
+- lifestyle preferences,
+- recent check-ins,
+- activities,
+- activity history,
+- current plan,
+- recent progress,
+- prior conversations,
+- selected long-term memories,
+- relevant wellness knowledge retrieved through RAG.
+
+Aaryu can provide general wellness guidance such as:
+- lifestyle ideas,
+- exercise suggestions,
+- dietary and food-related suggestions,
+- habit-building suggestions,
+- motivation,
+- planning support,
+- progress interpretation,
+- general emotional support,
+- reflective questions,
+- practical daily recommendations.
+
+Aaryu should communicate naturally and warmly.
+
+Aaryu should not present itself as a medical professional, doctor, therapist, or psychologist. It must not diagnose diseases, claim clinical authority, make unsafe medical decisions, or prescribe medication. For high-risk medical or crisis situations, the system should encourage appropriate professional or emergency support rather than attempting to replace it.
+
+Aaryu should feel like a consistent mentor rather than an interchangeable AI completion engine.
+
+AARYU CONVERSATION DESIGN
+Conversation sessions must be persistent. A user may have multiple conversations, for example: Diet planning, Building a routine, Fitness consistency, Weekly reflection, Sleep habits, or Specific wellness goals.
+
+Each session belongs strictly to one authenticated user.
+
+Chat history should remain available even when a roadmap is generated from it.
+
+The interface should make conversations easy to scan, revisit, and continue.
+
+The Aaryu experience should make strong use of the existing message-scroller component and other interaction primitives where appropriate.
+
+Aaryu can also ask structured questions inside the conversation. The existing questionnaire component should be used where it creates a better experience than a free-form text response.
+
+For example, instead of always asking “What is your current energy level?”, Aaryu may present selectable options such as Very low, Low, Moderate, Good, Excellent. This should make the conversation feel interactive while remaining natural.
+
+3. ROADMAP
+Aarogya includes a roadmap-generation experience connected to conversation.
+
+The user can select an existing Aaryu conversation and request a roadmap.
+
+The backend should:
+Conversation
+→ Identify goals and relevant context
+→ Structure the plan
+→ Produce an actionable roadmap
+→ Render it as Obsidian-compatible Markdown
+
+The roadmap does not need to be permanently stored as a separate product object unless technically necessary. The source conversation must remain persisted.
+
+The generated roadmap should be easy to read, copy, and transfer into Obsidian.
+
+The frontend should provide a polished Markdown preview and a clear copy action rather than presenting an ugly raw developer output screen.
+
+The roadmap should contain useful structure such as:
+- goal,
+- current situation,
+- milestones,
+- habits,
+- activities,
+- weekly progression,
+- notes,
+- practical actions.
+
+The output should be actionable rather than inspirational text alone.
+
+4. PROGRESS
+Progress is designed to show the user's personal journey rather than just present numbers.
+
+The Progress area may contain:
+- progress photography,
+- visual timeline,
+- activity patterns,
+- consistency information,
+- goal progress,
+- meaningful behavioral insights,
+- milestones,
+- trends.
+
+Progress photography is an important visual part of the experience.
+
+The user should be able to:
+- use the camera where supported,
+- capture a progress photo,
+- upload/store a photo,
+- view their own historical photos,
+- browse them chronologically,
+- compare their own progress over time.
+
+Photos are highly private user data and must be protected by strict user-level authorization.
+
+The UI should focus on the person's journey rather than encouraging obsessive numerical tracking.
+
+Charts can be used when they communicate something meaningful, but Aarogya should avoid turning Progress into a dense analytics dashboard.
+
+ACCOUNT AND PROFILE
+Aarogya requires a persistent account because personalization depends on user context.
+
+A user can authenticate through:
+- Google
+- Yahoo
+- Email and password
+
+When a user signs in through a supported OAuth provider, the provider's avatar/profile image should be used where available.
+
+The authenticated user's avatar should appear in the sidebar and in the top-right account area.
+
+The top-right account control should expose a polished menu containing items such as Account, Settings, AI Provider, and Logout.
+
+The Account area allows the user to review and update personal information.
+
+Editable information may include:
+- profile picture,
+- name,
+- email where supported,
+- date of birth,
+- age where applicable,
+- gender where voluntarily provided,
+- height,
+- weight,
+- nationality/region,
+- food preferences,
+- commonly eaten foods,
+- wellness goals,
+- other relevant personal details,
+- password management.
+
+Information collected during onboarding should be editable later. The user should not need to recreate their profile to change a value.
+
+ONBOARDING
+Aarogya onboarding is important because personalization begins from the first session.
+
+The first-time user should be presented with a carefully designed onboarding flow rather than a long traditional registration form.
+
+The onboarding experience should feel like an interactive questionnaire.
+
+It can ask for:
+- name,
+- date of birth or age,
+- gender if the user chooses to provide it,
+- height,
+- weight,
+- nationality or region,
+- foods regularly eaten,
+- dietary preferences,
+- wellness goals,
+- lifestyle/activity preferences,
+- other information that is clearly useful for personalization.
+
+Nationality/region should be used for cultural, dietary, regional, and contextual personalization. It should not be used to infer a person's body type or make unsupported medical assumptions.
+
+The questionnaire component should be used to make onboarding feel interactive and premium.
+
+The flow should use one question or a small amount of information at a time rather than overwhelming the user with a long form.
+
+Progress indicators, smooth transitions, clear selection states, and subtle animations should make the onboarding feel intentional.
+
+AI PROVIDER SETTINGS
+Aarogya allows users to connect their own AI provider through Settings.
+
+The initial provider abstraction supports:
+- Gemini
+- OpenAI
+- Anthropic
+
+The user can select a provider and enter their provider API key.
+
+The API key must be treated as highly sensitive information.
+
+The frontend should never expose or store the raw API key in browser-visible persistent storage. The key is sent to the backend, encrypted at rest, and only used by the backend when the selected provider needs to be called.
+
+The UI should communicate this clearly using concise security language such as: “Your API key is encrypted and stored securely.”
+
+The user interface should never display the stored plaintext key again.
+
+The settings interface should support:
+- provider selection,
+- API key entry,
+- connection/test status,
+- replace/update key,
+- remove provider configuration,
+- active provider selection.
+
+The AI provider experience must be simple enough that a normal user can understand it without technical documentation.
+
+AUTHENTICATION EXPERIENCE
+The authentication experience should feel like a polished introduction to Aarogya.
+
+The login/registration area should support:
+- Google login,
+- Yahoo login,
+- email/password login,
+- registration,
+- transition between login and registration.
+
+The landing/auth page should make use of the existing tweet-card and carousel components.
+
+Multiple testimonial-style or product-related cards should move through a smooth carousel layout.
+
+The provided card images will eventually be supplied by the product owner. Until then, image locations should remain as clean empty placeholders rather than fake images.
+
+The authentication layout should not feel like an enterprise admin login page. It should feel like the front door of a premium consumer wellness product.
+
+VISUAL DESIGN LANGUAGE
+Aarogya should use a strict visual system based on the following palette:
+
+#1E2126
+#FFFFFF
+#0B6623
+#FFCE1B
+#000000
+
+Color roles should be consistent across the product.
+
+#1E2126: Primary dark UI surface and navigation color.
+#FFFFFF: Primary light text and clean contrast elements.
+#0B6623: Aarogya's core wellness green, used for meaningful actions, active states, positive progress, and brand accents.
+#FFCE1B: Highlight/accent color used selectively for attention, milestones, progress moments, or secondary emphasis.
+#000000: Deep background and high-contrast elements.
+
+The palette should not be used indiscriminately. The application should remain visually restrained.
+
+Do not use the palette as an excuse to create gradients everywhere.
+Do not create a glassmorphism-heavy interface.
+Do not flood the UI with neon effects.
+Do not use excessive glowing shadows.
+Do not make every element animated.
+
+PREMIUM FEEL
+The premium quality of Aarogya should come from:
+- excellent spacing,
+- strong typography,
+- consistent component geometry,
+- thoughtful alignment,
+- rounded controls,
+- carefully tuned hover states,
+- polished loading states,
+- natural transitions,
+- responsive interactions,
+- subtle micro-animations,
+- visual hierarchy,
+- restraint.
+
+The application should feel smooth and pleasant.
+
+The goal is not “more effects.” The goal is: “Everything feels intentional.”
+
+MOTION DESIGN
+Motion is an important part of the Aarogya experience.
+
+Use subtle, fast, natural transitions for:
+- route changes,
+- page entrance,
+- page exit,
+- card expansion,
+- selection changes,
+- questionnaire progression,
+- carousel movement,
+- sidebar state changes,
+- hover interactions,
+- dropdowns,
+- sheets,
+- loading,
+- completing an activity,
+- sending/receiving chat messages,
+- progress updates.
+
+Transitions should generally feel fast and fluid rather than slow and theatrical.
+
+Motion should communicate state and continuity.
+
+Examples:
+- questionnaire answer selected → gentle emphasis → next question
+- activity completed → visual completion state → progress updates
+- message sent → smooth insertion into message scroller
+- sidebar item selected → subtle active-state movement
+- account menu opened → quick controlled entrance
+- route changed → clean transition without visual jumping
+
+Do not use motion simply because an animation library exists.
+
+Avoid excessive bouncing, floating, parallax, or decorative effects.
+
+Aarogya should feel alive without feeling childish.
+
+NAVIGATION
+Desktop should use a compact, elegant sidebar inspired by the provided sidebar reference.
+
+The sidebar should contain:
+- Aarogya branding,
+- Today,
+- Aaryu,
+- Roadmap,
+- Progress,
+- secondary account/settings items,
+- authenticated avatar/profile section.
+
+The sidebar should have strong hierarchy and subtle separators.
+
+It should feel similar in spirit to a premium modern product sidebar: dark, compact, clear, minimal, and highly usable.
+
+Mobile should use a mobile-friendly navigation pattern, potentially a bottom navigation bar or sheet-based navigation.
+
+The most important mobile destinations should remain:
+- Today
+- Aaryu
+- Roadmap
+- Progress
+
+TOP-RIGHT USER MENU
+The authenticated desktop application should have a top-right user control.
+
+Display the provider avatar when available.
+
+The menu should include:
+- profile/account,
+- settings,
+- AI provider,
+- logout.
+
+The menu should open smoothly and close cleanly.
+
+Logout should be easy to find but should not dominate the interface.
+
+UI COMPONENT SYSTEM
+The project already contains a strong component library based on shadcn/ui, Magic UI, and related primitives.
+
+Existing components include:
+- button
+- calendar
+- card
+- carousel
+- chart
+- checkbox
+- input
+- lens
+- message-scroller
+- navigation-menu
+- questionnaire
+- separator
+- sheet
+- sidebar
+- skeleton
+- smooth-cursor
+- spinner
+- table
+- textarea
+- tooltip
+- tweet-card
+
+Use these components where they genuinely improve the product. Do not force every component into the interface.
+
+Recommended usage:
+Button: Primary actions and controlled interaction.
+Card: Daily activities, insights, profile sections, summaries.
+Carousel: Authentication experience, testimonials, progress views, or other horizontally browsable collections.
+Chart: Only for useful progress insights.
+Checkbox: Preferences, habits, goals, settings.
+Input: Profile and settings data.
+Textarea: Aaryu interaction and longer user-entered context.
+Questionnaire: Onboarding and structured Aaryu questions.
+Sheet: Mobile navigation, filters, account panels, and secondary actions.
+Sidebar: Primary desktop navigation.
+Skeleton: Data-loading states.
+Spinner: Small asynchronous operations.
+Tooltip: Secondary explanatory information.
+Message Scroller: Aaryu conversation.
+Tweet Card: Authentication/landing testimonials or product messages.
+Lens: Potential enhancement for progress-photo browsing where appropriate.
+Smooth Cursor: Very subtle desktop enhancement only; never let it interfere with usability.
+Table: Use sparingly. Aarogya should not become an administrative data grid.
+Separator: Visual grouping.
+Navigation Menu: Secondary navigation when beneficial.
+
+DESIGN PRINCIPLES
+1. Mobile-first thinking, responsive desktop experience.
+2. Dark-first visual language using the defined palette.
+3. Strong accessibility and focus states.
+4. Clear typography hierarchy.
+5. Consistent corner radius.
+6. Consistent spacing scale.
+7. Limited visual noise.
+8. Minimal unnecessary decoration.
+9. Motion should reinforce interaction.
+10. Empty states should feel designed.
+11. Loading states should feel polished.
+12. Error states should be understandable.
+13. Never leave the user unsure what to do next.
+14. Use meaningful information hierarchy rather than visual clutter.
+15. Favor one excellent interaction over several average ones.
+
+RESPONSIVE BEHAVIOR
+The application must work gracefully on desktop, laptop, tablet, and mobile.
+
+Do not simply shrink the desktop UI on mobile. Mobile should be designed as a first-class experience.
+
+The sidebar may collapse or become a sheet/bottom navigation on small screens.
+Cards should reflow naturally. Chat must remain usable on small screens. Progress photos must remain easy to browse. The questionnaire should work comfortably with touch interactions.
+
+ACCESSIBILITY
+The frontend should include:
+- semantic HTML,
+- keyboard navigation,
+- visible focus states,
+- accessible labels,
+- reasonable contrast,
+- accessible buttons,
+- accessible inputs,
+- meaningful form errors,
+- reduced-motion consideration.
+
+Animations must never be the only way to communicate state.
+
+STATE AND DATA
+The frontend consumes the existing Aarogya backend. Do not invent a separate fake data architecture if the backend already provides the corresponding functionality.
+
+Use the backend as the source of truth.
+
+The frontend should handle:
+- loading,
+- success,
+- empty state,
+- error state,
+- retry,
+- optimistic interaction only where safe.
+
+Sensitive data should never be placed in unsafe client storage.
+
+Do not expose provider API keys to the browser.
+
+The user avatar should be sourced from authenticated identity data where available.
+
+SECURITY EXPECTATIONS
+Frontend must preserve backend security boundaries.
+
+Never assume a resource belongs to the current user because an ID appears in the browser. Backend authorization remains authoritative.
+
+Never log sensitive API keys.
+Never expose raw provider credentials.
+Do not put secret keys into NEXT_PUBLIC_ environment variables.
+The frontend should never try to directly connect to PostgreSQL, Redis, or Qdrant.
+
+PRODUCT TONE
+Aarogya should feel:
+- warm,
+- calm,
+- intelligent,
+- confident,
+- modern,
+- supportive,
+- personal.
+
+It should not feel:
+- clinical,
+- corporate,
+- childish,
+- gamified to excess,
+- overly futuristic,
+- flashy,
+- generic,
+- like an admin dashboard.
+
+AARYU VISUAL IDENTITY
+Aaryu should have a recognizable but subtle visual identity.
+
+Aaryu is not a cartoon mascot unless a later design decision explicitly introduces one.
+
+The identity should primarily be expressed through:
+- conversational layout,
+- typography,
+- message treatment,
+- subtle accent styling,
+- interactive question cards,
+- contextual suggestions,
+- thoughtful animations,
+- presence/state indicators where appropriate.
+
+The experience should feel human and intentional without pretending that Aaryu is literally a human being.
+
+EMPTY STATES
+Every important page should have a proper empty state.
+
+Examples:
+No chat sessions: “Start your first conversation with Aaryu.”
+No roadmap: “Create a roadmap from one of your conversations.”
+No progress photos: “Your progress story starts here.”
+No completed activities: “Your first completed activity will appear here.”
+
+Empty states should guide the user rather than simply say “No data.”
+
+LOADING STATES
+The application should use skeletons and controlled loading states.
+
+Avoid large blank areas while requests are loading.
+Aaryu responses should use a conversational loading state.
+Questionnaire progression should feel immediate even when the backend operation is asynchronous.
+Images should load gracefully.
+
+ERROR STATES
+Errors should be clear and calm.
+
+Examples:
+AI provider not configured: Explain that the user can connect a provider through Settings.
+AI provider unavailable: Explain that the provider could not be reached and offer retry.
+Photo upload failure: Explain accepted formats/size in a friendly manner.
+Session expired: Guide the user to sign in again.
+
+Do not expose raw stack traces or technical backend errors.
+
+IMPLEMENTATION PRIORITY
+The frontend should be built in this general order:
+1. Global design system and layout
+2. Authentication / landing
+3. Onboarding questionnaire
+4. Authenticated application shell
+5. Today page
+6. Aaryu chat
+7. Account/profile
+8. Settings / AI provider
+9. Progress and photos
+10. Roadmap
+11. Responsive/mobile polishing
+12. Loading/error/empty states
+13. Motion and interaction refinement
+14. Final visual consistency pass
+
+FINAL PRODUCT GOAL
+Aarogya should feel like a finished consumer product rather than a frontend prototype.
+
+A person should be able to open Aarogya, understand it immediately, create or sign into an account, complete onboarding, see a personalized home experience, interact with Aaryu, generate a roadmap, view their own progress, manage their account, and configure their preferred AI provider.
+
+The application should communicate its central idea through the experience itself:
+
+Aarogya understands the person.
+Aarogya adapts to the person.
+Aarogya helps the person act.
+Aarogya remembers the journey.
+
+The frontend should make that philosophy visually obvious without relying on excessive decoration.
+
+The strongest expression of Aarogya is not a giant dashboard, not a wall of metrics, and not a flashy AI interface.
+
+It is the feeling that:
+
+“This application was made for me.”
+
+The final frontend should therefore combine:
+- the clarity of a premium productivity application,
+- the warmth of a modern wellness product,
+- the intelligence of a personalized AI assistant,
+- and the smoothness of a carefully crafted consumer experience.
+
+Every screen, interaction, transition, component, and piece of copy should contribute to that feeling.

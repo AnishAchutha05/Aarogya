@@ -87,3 +87,10 @@ uploads/*
 .DS_Store
 Thumbs.db
 desktop.ini
+
+frontend/node_modules/
+frontend/.next/
+backend/.venv/
+backend/__pycache__/
+frontend/.env*
+backend/.env*
