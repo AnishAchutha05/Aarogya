@@ -59,6 +59,24 @@ def test_health(client):
     assert response.status_code == 200
     assert response.json()["status"] == "ok"
 
+
+def test_production_cors_allows_vercel_register_origin(client):
+    response = client.options(
+        "/auth/register",
+        headers={
+            "Origin": "https://aarogya-amber.vercel.app",
+            "Access-Control-Request-Method": "POST",
+            "Access-Control-Request-Headers": "content-type,authorization",
+        },
+    )
+
+    assert response.status_code == 200
+    assert response.headers.get("access-control-allow-origin") == "https://aarogya-amber.vercel.app"
+    assert response.headers.get("access-control-allow-credentials") == "true"
+    assert "POST" in response.headers.get("access-control-allow-methods", "")
+    assert "authorization" in response.headers.get("access-control-allow-headers", "").lower()
+
+
 def test_register_and_login(client):
     # Register
     res = client.post("/auth/register", json={
