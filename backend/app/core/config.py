@@ -16,6 +16,7 @@ class Settings(BaseSettings):
     DATABASE_URL: str
     REDIS_URL: str
     QDRANT_URL: str
+    QDRANT_API_KEY: str
 
     # JWT
     JWT_SECRET: str

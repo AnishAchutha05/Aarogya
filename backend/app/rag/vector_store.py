@@ -15,7 +15,11 @@ def get_qdrant_client():
     global _client
     if _client is None:
         from qdrant_client import QdrantClient
-        _client = QdrantClient(url=settings.QDRANT_URL, timeout=10)
+        _client = QdrantClient(
+            url=settings.QDRANT_URL,
+            api_key=settings.QDRANT_API_KEY,
+            timeout=10,
+        )
     return _client
 
 
